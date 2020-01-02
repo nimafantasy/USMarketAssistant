@@ -1,7 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ApiServices>
-  <ApiService>
-    <Name></Name>
-    <Key></Key>
-  </ApiService>
-</ApiServices>
+<Settings>
+  <ApiServices>
+    <ApiService>
+      <Name>
+      </Name>
+      <Key>
+      </Key>
+    </ApiService>
+  </ApiServices>
+  <FavoriteStocks>
+    <Stock>fdgsdfh jhgjhb</Stock>
+    <Stock>ikghjkjk</Stock>
+    <Stock>hjk</Stock>
+    <Stock>h</Stock>
+    <Stock>hgjf</Stock>
+  </FavoriteStocks>
+</Settings>

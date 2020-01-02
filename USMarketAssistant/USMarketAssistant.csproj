@@ -80,10 +80,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Settings.xml" />
+    <Folder Include="SavedHistoricalData\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SavedHistoricalData\" />
+    <Content Include="Settings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
