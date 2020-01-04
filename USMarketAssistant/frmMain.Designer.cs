@@ -31,10 +31,13 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChart = new System.Windows.Forms.TabPage();
             this.tabData = new System.Windows.Forms.TabPage();
-            this.tabSetting = new System.Windows.Forms.TabPage();
-            this.txtFavoriteStocks = new System.Windows.Forms.TextBox();
-            this.btnUpdateFavoriteStocks = new System.Windows.Forms.Button();
             this.lblFavoriteStocks = new System.Windows.Forms.Label();
+            this.btnUpdateFavoriteStocks = new System.Windows.Forms.Button();
+            this.txtFavoriteStocks = new System.Windows.Forms.TextBox();
+            this.tabSetting = new System.Windows.Forms.TabPage();
+            this.lblEnterApi = new System.Windows.Forms.Label();
+            this.txtService1ApiKey = new System.Windows.Forms.TextBox();
+            this.btnSaveService1ApiKey = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabData.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +65,9 @@
             // 
             // tabData
             // 
+            this.tabData.Controls.Add(this.btnSaveService1ApiKey);
+            this.tabData.Controls.Add(this.txtService1ApiKey);
+            this.tabData.Controls.Add(this.lblEnterApi);
             this.tabData.Controls.Add(this.lblFavoriteStocks);
             this.tabData.Controls.Add(this.btnUpdateFavoriteStocks);
             this.tabData.Controls.Add(this.txtFavoriteStocks);
@@ -72,23 +78,14 @@
             this.tabData.Text = "Data";
             this.tabData.UseVisualStyleBackColor = true;
             // 
-            // tabSetting
+            // lblFavoriteStocks
             // 
-            this.tabSetting.Location = new System.Drawing.Point(4, 22);
-            this.tabSetting.Name = "tabSetting";
-            this.tabSetting.Size = new System.Drawing.Size(1063, 636);
-            this.tabSetting.TabIndex = 2;
-            this.tabSetting.Text = "Settings";
-            this.tabSetting.UseVisualStyleBackColor = true;
-            // 
-            // txtFavoriteStocks
-            // 
-            this.txtFavoriteStocks.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtFavoriteStocks.Location = new System.Drawing.Point(252, 256);
-            this.txtFavoriteStocks.Multiline = true;
-            this.txtFavoriteStocks.Name = "txtFavoriteStocks";
-            this.txtFavoriteStocks.Size = new System.Drawing.Size(575, 322);
-            this.txtFavoriteStocks.TabIndex = 0;
+            this.lblFavoriteStocks.AutoSize = true;
+            this.lblFavoriteStocks.Location = new System.Drawing.Point(249, 240);
+            this.lblFavoriteStocks.Name = "lblFavoriteStocks";
+            this.lblFavoriteStocks.Size = new System.Drawing.Size(228, 13);
+            this.lblFavoriteStocks.TabIndex = 2;
+            this.lblFavoriteStocks.Text = "Enter your favorite stocks\' symbol (one per line)";
             // 
             // btnUpdateFavoriteStocks
             // 
@@ -100,14 +97,49 @@
             this.btnUpdateFavoriteStocks.UseVisualStyleBackColor = true;
             this.btnUpdateFavoriteStocks.Click += new System.EventHandler(this.btnUpdateFavoriteStocks_Click);
             // 
-            // lblFavoriteStocks
+            // txtFavoriteStocks
             // 
-            this.lblFavoriteStocks.AutoSize = true;
-            this.lblFavoriteStocks.Location = new System.Drawing.Point(249, 240);
-            this.lblFavoriteStocks.Name = "lblFavoriteStocks";
-            this.lblFavoriteStocks.Size = new System.Drawing.Size(228, 13);
-            this.lblFavoriteStocks.TabIndex = 2;
-            this.lblFavoriteStocks.Text = "Enter your favorite stocks\' symbol (one per line)";
+            this.txtFavoriteStocks.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtFavoriteStocks.Location = new System.Drawing.Point(252, 256);
+            this.txtFavoriteStocks.Multiline = true;
+            this.txtFavoriteStocks.Name = "txtFavoriteStocks";
+            this.txtFavoriteStocks.Size = new System.Drawing.Size(575, 322);
+            this.txtFavoriteStocks.TabIndex = 0;
+            // 
+            // tabSetting
+            // 
+            this.tabSetting.Location = new System.Drawing.Point(4, 22);
+            this.tabSetting.Name = "tabSetting";
+            this.tabSetting.Size = new System.Drawing.Size(1063, 636);
+            this.tabSetting.TabIndex = 2;
+            this.tabSetting.Text = "Settings";
+            this.tabSetting.UseVisualStyleBackColor = true;
+            // 
+            // lblEnterApi
+            // 
+            this.lblEnterApi.AutoSize = true;
+            this.lblEnterApi.Location = new System.Drawing.Point(252, 74);
+            this.lblEnterApi.Name = "lblEnterApi";
+            this.lblEnterApi.Size = new System.Drawing.Size(151, 13);
+            this.lblEnterApi.TabIndex = 3;
+            this.lblEnterApi.Text = "Please enter the API key here:";
+            // 
+            // txtService1ApiKey
+            // 
+            this.txtService1ApiKey.Location = new System.Drawing.Point(252, 90);
+            this.txtService1ApiKey.Name = "txtService1ApiKey";
+            this.txtService1ApiKey.Size = new System.Drawing.Size(575, 20);
+            this.txtService1ApiKey.TabIndex = 4;
+            // 
+            // btnSaveService1ApiKey
+            // 
+            this.btnSaveService1ApiKey.Location = new System.Drawing.Point(499, 116);
+            this.btnSaveService1ApiKey.Name = "btnSaveService1ApiKey";
+            this.btnSaveService1ApiKey.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveService1ApiKey.TabIndex = 5;
+            this.btnSaveService1ApiKey.Text = "Save Key";
+            this.btnSaveService1ApiKey.UseVisualStyleBackColor = true;
+            this.btnSaveService1ApiKey.Click += new System.EventHandler(this.btnSaveService1ApiKey_Click);
             // 
             // frmMain
             // 
@@ -133,5 +165,8 @@
         private System.Windows.Forms.TextBox txtFavoriteStocks;
         private System.Windows.Forms.Button btnUpdateFavoriteStocks;
         private System.Windows.Forms.Label lblFavoriteStocks;
+        private System.Windows.Forms.Button btnSaveService1ApiKey;
+        private System.Windows.Forms.TextBox txtService1ApiKey;
+        private System.Windows.Forms.Label lblEnterApi;
     }
 }

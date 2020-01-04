@@ -1,10 +1,12 @@
 <Settings>
   <ApiServices>
     <ApiService>
-      <Name>
-      </Name>
-      <Key>
-      </Key>
+      <Name>Alpha Vantage</Name>
+      <Key>some key</Key>
+    </ApiService>
+    <ApiService>
+      <Name>Second Company</Name>
+      <Key>another key</Key>
     </ApiService>
   </ApiServices>
   <FavoriteStocks>

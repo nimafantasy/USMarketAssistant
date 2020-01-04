@@ -14,12 +14,15 @@ namespace USMarketAssistant
 {
     public partial class frmMain : Form
     {
+        public string strSettingPath = "../../Settings.xml";
+        public Dictionary<string, string> dicApiServices = new Dictionary<string, string>();
         public frmMain()
         {
             InitializeComponent();
 
             // Load Favorite Stocks
             LoadFavorites();
+            LoadApiServices();
             //txtFavoriteStocks.AppendText("hello");
         }
 
@@ -37,6 +40,17 @@ namespace USMarketAssistant
                     }
                 }
                 
+            }
+        }
+
+        public void LoadApiServices()
+        {
+            dicApiServices.Clear();
+            XmlDocument doc = GetSettingXml();
+            XmlNodeList nodes = doc.DocumentElement.SelectNodes("/Settings/ApiServices/ApiService");
+            foreach (XmlNode node in nodes)
+            {
+                dicApiServices.Add(node.SelectNodes("Name")[0].InnerText, node.SelectNodes("Key")[0].InnerText);
             }
         }
 
@@ -77,13 +91,13 @@ namespace USMarketAssistant
         public XmlDocument GetSettingXml()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load("../../Settings.xml");
+            doc.Load(strSettingPath);
             return doc;
         }
 
         public void SaveSettingXml(XmlDocument doc)
         {
-            doc.Save("../../Settings.xml");
+            doc.Save(strSettingPath);
         }
 
         public void AddFavoriteStockToSetting(XmlDocument doc, string name)
@@ -99,6 +113,52 @@ namespace USMarketAssistant
 
             }
             SaveSettingXml(doc);
+        }
+
+        private void btnSaveService1ApiKey_Click(object sender, EventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(strSettingPath);
+            bool blFoundEntry = false;
+
+            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
+            {
+                if (node.Name == "ApiServices")
+                {
+                    foreach (XmlNode nd in node.ChildNodes)
+                    {
+                        if (nd.HasChildNodes)
+                        {
+                            if (nd.SelectNodes("Name")[0].InnerText == "Alpha Vantage")
+                            {
+                                nd.SelectNodes("Key")[0].InnerText = txtService1ApiKey.Text;
+                                blFoundEntry = true;
+                            }
+                        }
+                        if (blFoundEntry)
+                            break;
+                    }
+                    if (blFoundEntry)
+                        break;
+                    else
+                    {
+                        XmlNode xmlnode = doc.CreateNode(XmlNodeType.Element, "ApiService", "");
+                        XmlNode xmlnode1 = doc.CreateNode(XmlNodeType.Element, "Name", "");
+                        XmlNode xmlnode2 = doc.CreateNode(XmlNodeType.Element, "Key", "");
+                        xmlnode1.InnerText = "Alpha Vantage";
+                        xmlnode2.InnerText = txtService1ApiKey.Text;
+                        xmlnode.AppendChild(xmlnode1);
+                        xmlnode.AppendChild(xmlnode2);
+
+                        node.AppendChild(xmlnode);
+                        blFoundEntry = true;
+                    }
+                }
+                if (blFoundEntry)
+                    break;
+            }
+            SaveSettingXml(doc);
+            LoadApiServices();
         }
     }
 }
