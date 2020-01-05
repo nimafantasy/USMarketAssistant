@@ -2,7 +2,7 @@
   <ApiServices>
     <ApiService>
       <Name>Alpha Vantage</Name>
-      <Key>some key</Key>
+      <Key>bbbbbbbbbbbb</Key>
     </ApiService>
     <ApiService>
       <Name>Second Company</Name>
@@ -15,5 +15,6 @@
     <Stock>hjk</Stock>
     <Stock>h</Stock>
     <Stock>hgjf</Stock>
+    <Stock>ggggg</Stock>
   </FavoriteStocks>
 </Settings>

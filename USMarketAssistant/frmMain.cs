@@ -23,23 +23,21 @@ namespace USMarketAssistant
             // Load Favorite Stocks
             LoadFavorites();
             LoadApiServices();
+            DataLoader dl = new DataLoader();
+            dl.Load("MSFT", dicApiServices);
             //txtFavoriteStocks.AppendText("hello");
         }
+
+
 
         public void LoadFavorites()
         {
             XmlDocument doc = GetSettingXml();
-            
-            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
+            XmlNodeList nodes = doc.DocumentElement.SelectNodes("/Settings/FavoriteStocks/Stock");
+
+            foreach (XmlNode nd in nodes)
             {
-                if (node.Name == "FavoriteStocks")
-                {
-                    foreach (XmlNode nd in node.ChildNodes)
-                    {
-                        txtFavoriteStocks.AppendText(nd.InnerText+Environment.NewLine);
-                    }
-                }
-                
+                txtFavoriteStocks.AppendText(nd.InnerText+Environment.NewLine);
             }
         }
 
@@ -102,16 +100,12 @@ namespace USMarketAssistant
 
         public void AddFavoriteStockToSetting(XmlDocument doc, string name)
         {
-            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
-            {
-                if (node.Name == "FavoriteStocks")
-                {
-                    XmlNode xmlnode = doc.CreateNode(XmlNodeType.Element, "Stock", "");
-                    xmlnode.InnerText = name;
-                    node.AppendChild(xmlnode);
-                }
+            XmlNodeList nodes = doc.DocumentElement.SelectNodes("/Settings/FavoriteStocks");
+            
+            XmlNode xmlnode = doc.CreateNode(XmlNodeType.Element, "Stock", "");
+            xmlnode.InnerText = name;
+            nodes[0].AppendChild(xmlnode);
 
-            }
             SaveSettingXml(doc);
         }
 
