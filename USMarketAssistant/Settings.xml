@@ -10,11 +10,7 @@
     </ApiService>
   </ApiServices>
   <FavoriteStocks>
-    <Stock>fdgsdfh jhgjhb</Stock>
-    <Stock>ikghjkjk</Stock>
-    <Stock>hjk</Stock>
-    <Stock>h</Stock>
-    <Stock>hgjf</Stock>
-    <Stock>ggggg</Stock>
+    <Stock>MSFT</Stock>
+    <Stock>GOOG</Stock>
   </FavoriteStocks>
 </Settings>

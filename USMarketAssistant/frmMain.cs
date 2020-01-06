@@ -16,15 +16,18 @@ namespace USMarketAssistant
     {
         public string strSettingPath = "../../Settings.xml";
         public Dictionary<string, string> dicApiServices = new Dictionary<string, string>();
+        public List<Stock> lstFavorites = new List<Stock>();
+        private int intSelectedPeriod = 365;
         public frmMain()
         {
             InitializeComponent();
 
             // Load Favorite Stocks
-            LoadFavorites();
+            
             LoadApiServices();
-            DataLoader dl = new DataLoader();
-            dl.Load("MSFT", dicApiServices);
+            LoadFavorites();
+
+
             //txtFavoriteStocks.AppendText("hello");
         }
 
@@ -34,10 +37,13 @@ namespace USMarketAssistant
         {
             XmlDocument doc = GetSettingXml();
             XmlNodeList nodes = doc.DocumentElement.SelectNodes("/Settings/FavoriteStocks/Stock");
-
+            lstFavorites.Clear();
+            DataLoader dl = new DataLoader();
             foreach (XmlNode nd in nodes)
             {
                 txtFavoriteStocks.AppendText(nd.InnerText+Environment.NewLine);
+                lstFavorites.Add(dl.Load(nd.InnerText, dicApiServices));
+                lbFavorites.Items.Add(nd.InnerText);
             }
         }
 
@@ -153,6 +159,33 @@ namespace USMarketAssistant
             }
             SaveSettingXml(doc);
             LoadApiServices();
+        }
+
+        private void lbFavorites_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBox lb = (ListBox)sender;
+            Drawing.Draw(chrtMain, lstFavorites.Find(x => x.Name == lb.SelectedItem.ToString()),intSelectedPeriod);
+        }
+
+        private void periodRadioButtons_CheckedChanged(object sender, EventArgs e)
+        {
+            int period = 365; // default 1 year
+            if (sender == rbPeriod10Y)
+                period = 3650;
+            else if (sender == rbPeriod1Y)
+                period = 365;
+            else if (sender == rbPeriod9M)
+                period = 270;
+            else if (sender == rbPeriod6M)
+                period = 180;
+            else if (sender == rbPeriod3M)
+                period = 90;
+            else if (sender == rbPeriod1M)
+                period = 30;
+            else
+                period = 365;
+            intSelectedPeriod = period;
+            Drawing.Draw(chrtMain, lstFavorites.Find(x => x.Name == lbFavorites.SelectedItem.ToString()), period);
         }
     }
 }
