@@ -28,11 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChart = new System.Windows.Forms.TabPage();
+            this.pnlPeriods = new System.Windows.Forms.Panel();
+            this.rbPeriod10Y = new System.Windows.Forms.RadioButton();
+            this.rbPeriod1M = new System.Windows.Forms.RadioButton();
+            this.rbPeriod1Y = new System.Windows.Forms.RadioButton();
+            this.rbPeriod3M = new System.Windows.Forms.RadioButton();
+            this.rbPeriod9M = new System.Windows.Forms.RadioButton();
+            this.rbPeriod6M = new System.Windows.Forms.RadioButton();
+            this.chrtMain = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lbFavorites = new System.Windows.Forms.ListBox();
             this.tabData = new System.Windows.Forms.TabPage();
             this.btnSaveService1ApiKey = new System.Windows.Forms.Button();
             this.txtService1ApiKey = new System.Windows.Forms.TextBox();
@@ -41,20 +50,12 @@
             this.btnUpdateFavoriteStocks = new System.Windows.Forms.Button();
             this.txtFavoriteStocks = new System.Windows.Forms.TextBox();
             this.tabSetting = new System.Windows.Forms.TabPage();
-            this.lbFavorites = new System.Windows.Forms.ListBox();
-            this.chrtMain = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.rbPeriod10Y = new System.Windows.Forms.RadioButton();
-            this.rbPeriod1Y = new System.Windows.Forms.RadioButton();
-            this.rbPeriod9M = new System.Windows.Forms.RadioButton();
-            this.rbPeriod6M = new System.Windows.Forms.RadioButton();
-            this.rbPeriod3M = new System.Windows.Forms.RadioButton();
-            this.rbPeriod1M = new System.Windows.Forms.RadioButton();
-            this.pnlPeriods = new System.Windows.Forms.Panel();
+            this.btnDrawChannel = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabChart.SuspendLayout();
-            this.tabData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chrtMain)).BeginInit();
             this.pnlPeriods.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtMain)).BeginInit();
+            this.tabData.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -70,6 +71,7 @@
             // 
             // tabChart
             // 
+            this.tabChart.Controls.Add(this.btnDrawChannel);
             this.tabChart.Controls.Add(this.pnlPeriods);
             this.tabChart.Controls.Add(this.chrtMain);
             this.tabChart.Controls.Add(this.lbFavorites);
@@ -80,6 +82,116 @@
             this.tabChart.TabIndex = 0;
             this.tabChart.Text = "Chart";
             this.tabChart.UseVisualStyleBackColor = true;
+            // 
+            // pnlPeriods
+            // 
+            this.pnlPeriods.Controls.Add(this.rbPeriod10Y);
+            this.pnlPeriods.Controls.Add(this.rbPeriod1M);
+            this.pnlPeriods.Controls.Add(this.rbPeriod1Y);
+            this.pnlPeriods.Controls.Add(this.rbPeriod3M);
+            this.pnlPeriods.Controls.Add(this.rbPeriod9M);
+            this.pnlPeriods.Controls.Add(this.rbPeriod6M);
+            this.pnlPeriods.Location = new System.Drawing.Point(6, 458);
+            this.pnlPeriods.Name = "pnlPeriods";
+            this.pnlPeriods.Size = new System.Drawing.Size(133, 143);
+            this.pnlPeriods.TabIndex = 8;
+            // 
+            // rbPeriod10Y
+            // 
+            this.rbPeriod10Y.AutoSize = true;
+            this.rbPeriod10Y.Location = new System.Drawing.Point(3, 3);
+            this.rbPeriod10Y.Name = "rbPeriod10Y";
+            this.rbPeriod10Y.Size = new System.Drawing.Size(62, 17);
+            this.rbPeriod10Y.TabIndex = 2;
+            this.rbPeriod10Y.TabStop = true;
+            this.rbPeriod10Y.Text = "10 Year";
+            this.rbPeriod10Y.UseVisualStyleBackColor = true;
+            this.rbPeriod10Y.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
+            // 
+            // rbPeriod1M
+            // 
+            this.rbPeriod1M.AutoSize = true;
+            this.rbPeriod1M.Location = new System.Drawing.Point(3, 119);
+            this.rbPeriod1M.Name = "rbPeriod1M";
+            this.rbPeriod1M.Size = new System.Drawing.Size(64, 17);
+            this.rbPeriod1M.TabIndex = 7;
+            this.rbPeriod1M.TabStop = true;
+            this.rbPeriod1M.Text = "1 Month";
+            this.rbPeriod1M.UseVisualStyleBackColor = true;
+            this.rbPeriod1M.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
+            // 
+            // rbPeriod1Y
+            // 
+            this.rbPeriod1Y.AutoSize = true;
+            this.rbPeriod1Y.Location = new System.Drawing.Point(3, 26);
+            this.rbPeriod1Y.Name = "rbPeriod1Y";
+            this.rbPeriod1Y.Size = new System.Drawing.Size(56, 17);
+            this.rbPeriod1Y.TabIndex = 3;
+            this.rbPeriod1Y.TabStop = true;
+            this.rbPeriod1Y.Text = "1 Year";
+            this.rbPeriod1Y.UseVisualStyleBackColor = true;
+            this.rbPeriod1Y.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
+            // 
+            // rbPeriod3M
+            // 
+            this.rbPeriod3M.AutoSize = true;
+            this.rbPeriod3M.Location = new System.Drawing.Point(3, 96);
+            this.rbPeriod3M.Name = "rbPeriod3M";
+            this.rbPeriod3M.Size = new System.Drawing.Size(69, 17);
+            this.rbPeriod3M.TabIndex = 6;
+            this.rbPeriod3M.TabStop = true;
+            this.rbPeriod3M.Text = "3 Months";
+            this.rbPeriod3M.UseVisualStyleBackColor = true;
+            this.rbPeriod3M.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
+            // 
+            // rbPeriod9M
+            // 
+            this.rbPeriod9M.AutoSize = true;
+            this.rbPeriod9M.Location = new System.Drawing.Point(3, 50);
+            this.rbPeriod9M.Name = "rbPeriod9M";
+            this.rbPeriod9M.Size = new System.Drawing.Size(69, 17);
+            this.rbPeriod9M.TabIndex = 4;
+            this.rbPeriod9M.TabStop = true;
+            this.rbPeriod9M.Text = "9 Months";
+            this.rbPeriod9M.UseVisualStyleBackColor = true;
+            this.rbPeriod9M.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
+            // 
+            // rbPeriod6M
+            // 
+            this.rbPeriod6M.AutoSize = true;
+            this.rbPeriod6M.Location = new System.Drawing.Point(3, 73);
+            this.rbPeriod6M.Name = "rbPeriod6M";
+            this.rbPeriod6M.Size = new System.Drawing.Size(69, 17);
+            this.rbPeriod6M.TabIndex = 5;
+            this.rbPeriod6M.TabStop = true;
+            this.rbPeriod6M.Text = "6 Months";
+            this.rbPeriod6M.UseVisualStyleBackColor = true;
+            this.rbPeriod6M.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
+            // 
+            // chrtMain
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chrtMain.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chrtMain.Legends.Add(legend1);
+            this.chrtMain.Location = new System.Drawing.Point(145, 6);
+            this.chrtMain.Name = "chrtMain";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chrtMain.Series.Add(series1);
+            this.chrtMain.Size = new System.Drawing.Size(912, 624);
+            this.chrtMain.TabIndex = 1;
+            this.chrtMain.Text = "chart1";
+            // 
+            // lbFavorites
+            // 
+            this.lbFavorites.FormattingEnabled = true;
+            this.lbFavorites.Location = new System.Drawing.Point(6, 6);
+            this.lbFavorites.Name = "lbFavorites";
+            this.lbFavorites.Size = new System.Drawing.Size(133, 446);
+            this.lbFavorites.TabIndex = 0;
+            this.lbFavorites.SelectedIndexChanged += new System.EventHandler(this.lbFavorites_SelectedIndexChanged);
             // 
             // tabData
             // 
@@ -159,115 +271,15 @@
             this.tabSetting.Text = "Settings";
             this.tabSetting.UseVisualStyleBackColor = true;
             // 
-            // lbFavorites
+            // btnDrawChannel
             // 
-            this.lbFavorites.FormattingEnabled = true;
-            this.lbFavorites.Location = new System.Drawing.Point(6, 6);
-            this.lbFavorites.Name = "lbFavorites";
-            this.lbFavorites.Size = new System.Drawing.Size(133, 446);
-            this.lbFavorites.TabIndex = 0;
-            this.lbFavorites.SelectedIndexChanged += new System.EventHandler(this.lbFavorites_SelectedIndexChanged);
-            // 
-            // chrtMain
-            // 
-            chartArea4.Name = "ChartArea1";
-            this.chrtMain.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chrtMain.Legends.Add(legend4);
-            this.chrtMain.Location = new System.Drawing.Point(145, 6);
-            this.chrtMain.Name = "chrtMain";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chrtMain.Series.Add(series4);
-            this.chrtMain.Size = new System.Drawing.Size(912, 624);
-            this.chrtMain.TabIndex = 1;
-            this.chrtMain.Text = "chart1";
-            // 
-            // rbPeriod10Y
-            // 
-            this.rbPeriod10Y.AutoSize = true;
-            this.rbPeriod10Y.Location = new System.Drawing.Point(3, 3);
-            this.rbPeriod10Y.Name = "rbPeriod10Y";
-            this.rbPeriod10Y.Size = new System.Drawing.Size(62, 17);
-            this.rbPeriod10Y.TabIndex = 2;
-            this.rbPeriod10Y.TabStop = true;
-            this.rbPeriod10Y.Text = "10 Year";
-            this.rbPeriod10Y.UseVisualStyleBackColor = true;
-            this.rbPeriod10Y.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
-            // 
-            // rbPeriod1Y
-            // 
-            this.rbPeriod1Y.AutoSize = true;
-            this.rbPeriod1Y.Location = new System.Drawing.Point(3, 26);
-            this.rbPeriod1Y.Name = "rbPeriod1Y";
-            this.rbPeriod1Y.Size = new System.Drawing.Size(56, 17);
-            this.rbPeriod1Y.TabIndex = 3;
-            this.rbPeriod1Y.TabStop = true;
-            this.rbPeriod1Y.Text = "1 Year";
-            this.rbPeriod1Y.UseVisualStyleBackColor = true;
-            this.rbPeriod1Y.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
-            // 
-            // rbPeriod9M
-            // 
-            this.rbPeriod9M.AutoSize = true;
-            this.rbPeriod9M.Location = new System.Drawing.Point(3, 50);
-            this.rbPeriod9M.Name = "rbPeriod9M";
-            this.rbPeriod9M.Size = new System.Drawing.Size(69, 17);
-            this.rbPeriod9M.TabIndex = 4;
-            this.rbPeriod9M.TabStop = true;
-            this.rbPeriod9M.Text = "9 Months";
-            this.rbPeriod9M.UseVisualStyleBackColor = true;
-            this.rbPeriod9M.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
-            // 
-            // rbPeriod6M
-            // 
-            this.rbPeriod6M.AutoSize = true;
-            this.rbPeriod6M.Location = new System.Drawing.Point(3, 73);
-            this.rbPeriod6M.Name = "rbPeriod6M";
-            this.rbPeriod6M.Size = new System.Drawing.Size(69, 17);
-            this.rbPeriod6M.TabIndex = 5;
-            this.rbPeriod6M.TabStop = true;
-            this.rbPeriod6M.Text = "6 Months";
-            this.rbPeriod6M.UseVisualStyleBackColor = true;
-            this.rbPeriod6M.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
-            // 
-            // rbPeriod3M
-            // 
-            this.rbPeriod3M.AutoSize = true;
-            this.rbPeriod3M.Location = new System.Drawing.Point(3, 96);
-            this.rbPeriod3M.Name = "rbPeriod3M";
-            this.rbPeriod3M.Size = new System.Drawing.Size(69, 17);
-            this.rbPeriod3M.TabIndex = 6;
-            this.rbPeriod3M.TabStop = true;
-            this.rbPeriod3M.Text = "3 Months";
-            this.rbPeriod3M.UseVisualStyleBackColor = true;
-            this.rbPeriod3M.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
-            // 
-            // rbPeriod1M
-            // 
-            this.rbPeriod1M.AutoSize = true;
-            this.rbPeriod1M.Location = new System.Drawing.Point(3, 119);
-            this.rbPeriod1M.Name = "rbPeriod1M";
-            this.rbPeriod1M.Size = new System.Drawing.Size(64, 17);
-            this.rbPeriod1M.TabIndex = 7;
-            this.rbPeriod1M.TabStop = true;
-            this.rbPeriod1M.Text = "1 Month";
-            this.rbPeriod1M.UseVisualStyleBackColor = true;
-            this.rbPeriod1M.CheckedChanged += new System.EventHandler(this.periodRadioButtons_CheckedChanged);
-            // 
-            // pnlPeriods
-            // 
-            this.pnlPeriods.Controls.Add(this.rbPeriod10Y);
-            this.pnlPeriods.Controls.Add(this.rbPeriod1M);
-            this.pnlPeriods.Controls.Add(this.rbPeriod1Y);
-            this.pnlPeriods.Controls.Add(this.rbPeriod3M);
-            this.pnlPeriods.Controls.Add(this.rbPeriod9M);
-            this.pnlPeriods.Controls.Add(this.rbPeriod6M);
-            this.pnlPeriods.Location = new System.Drawing.Point(6, 458);
-            this.pnlPeriods.Name = "pnlPeriods";
-            this.pnlPeriods.Size = new System.Drawing.Size(133, 143);
-            this.pnlPeriods.TabIndex = 8;
+            this.btnDrawChannel.Location = new System.Drawing.Point(33, 607);
+            this.btnDrawChannel.Name = "btnDrawChannel";
+            this.btnDrawChannel.Size = new System.Drawing.Size(75, 23);
+            this.btnDrawChannel.TabIndex = 9;
+            this.btnDrawChannel.Text = "Draw Channel";
+            this.btnDrawChannel.UseVisualStyleBackColor = true;
+            this.btnDrawChannel.Click += new System.EventHandler(this.btnDrawChannel_Click);
             // 
             // frmMain
             // 
@@ -279,11 +291,11 @@
             this.Text = "Stock Assistant";
             this.tabControl1.ResumeLayout(false);
             this.tabChart.ResumeLayout(false);
-            this.tabData.ResumeLayout(false);
-            this.tabData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chrtMain)).EndInit();
             this.pnlPeriods.ResumeLayout(false);
             this.pnlPeriods.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtMain)).EndInit();
+            this.tabData.ResumeLayout(false);
+            this.tabData.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -309,5 +321,6 @@
         private System.Windows.Forms.RadioButton rbPeriod3M;
         private System.Windows.Forms.RadioButton rbPeriod9M;
         private System.Windows.Forms.RadioButton rbPeriod6M;
+        private System.Windows.Forms.Button btnDrawChannel;
     }
 }

@@ -164,7 +164,7 @@ namespace USMarketAssistant
         private void lbFavorites_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox lb = (ListBox)sender;
-            Drawing.Draw(chrtMain, lstFavorites.Find(x => x.Name == lb.SelectedItem.ToString()),intSelectedPeriod);
+            Drawing.DrawChart(chrtMain, lstFavorites.Find(x => x.Name == lb.SelectedItem.ToString()),intSelectedPeriod);
         }
 
         private void periodRadioButtons_CheckedChanged(object sender, EventArgs e)
@@ -185,7 +185,12 @@ namespace USMarketAssistant
             else
                 period = 365;
             intSelectedPeriod = period;
-            Drawing.Draw(chrtMain, lstFavorites.Find(x => x.Name == lbFavorites.SelectedItem.ToString()), period);
+            Drawing.DrawChart(chrtMain, lstFavorites.Find(x => x.Name == lbFavorites.SelectedItem.ToString()), period);
+        }
+
+        private void btnDrawChannel_Click(object sender, EventArgs e)
+        {
+            Drawing.DrawChannel(chrtMain,lstFavorites.Find(x => x.Name ==  lbFavorites.SelectedItem.ToString()), intSelectedPeriod);
         }
     }
 }

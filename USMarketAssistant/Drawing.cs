@@ -11,7 +11,7 @@ namespace USMarketAssistant
 {
     public static class Drawing
     {
-        public static void Draw(Chart chrt, Stock stock, int period)
+        public static void DrawChart(Chart chrt, Stock stock, int period)
         {
             double max = Double.MinValue;
             double min = Double.MaxValue;
@@ -69,6 +69,22 @@ namespace USMarketAssistant
             // draw!
             chrt.Invalidate();
 
+        }
+
+        public static void DrawChannel(Chart chrt, Stock stock, int period)
+        {
+            List<Tick> lstTemp = new List<Tick>();
+            foreach (Tick tck in stock.Ticks)
+            {
+                if (tck.Date > DateTime.Now.AddDays(period * (-1)))
+                {
+                    lstTemp.Add(tck);
+                }
+            }
+            foreach (DataPoint dp in Indicators.GetChannel(lstTemp))
+            {
+                chrt.Series[0].Points.Add(dp);
+            }
         }
     }
 
